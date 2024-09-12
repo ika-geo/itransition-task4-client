@@ -16,7 +16,6 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 });
 
 export const blockUsers = createAsyncThunk('users/blockUsers', async (userIds) => {
-    console.log(userIds)
     await axios.put(baseUrl + '/block', {userIds});
     return userIds;
 });
@@ -57,7 +56,6 @@ const userSlice = createSlice({
             })
             .addCase(fetchUsers.rejected, (state, action) => {
                 state.status = 'failed';
-                console.log(action);
                 state.error = action.error.message;
             })
 

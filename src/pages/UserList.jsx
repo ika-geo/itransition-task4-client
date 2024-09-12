@@ -26,14 +26,11 @@ const UserList = () => {
     const [selectedUsers, setSelectedUsers] = useState([]);
     const [checkedAll, setCheckedAll] = useState(false);
 
-    console.log(users)
-
     useEffect(() => {
         dispatch(fetchUsers());
     }, []);
 
     const handleSelectUser = (userId) => {
-        console.log(userId)
         setSelectedUsers((prev) =>
             prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
         );

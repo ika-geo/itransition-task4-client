@@ -18,7 +18,6 @@ const Login = () => {
             return;
         }
         let result = await dispatch(registration({ email, password, name, role}));
-        console.log(result)
         if (result?.payload) {
             navigate('/');
         }
