@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition-duration: .3s;
+}
+a:hover, button:hover{
+    opacity: 0.5;
+}
