@@ -2,7 +2,7 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {toast} from "react-toastify";
 
-let baseUrl = 'https://itransition-task4-server-nine.vercel.app/api/users'
+let baseUrl = 'https://itransition-task4-server-nu.vercel.app/api/users'
 
 const initialState = {
     users: [],
