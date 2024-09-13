@@ -4,7 +4,7 @@ import {
     blockUsers,
     unblockUsers,
     deleteUsers,
-    deleteUserAsUser,
+    selfDelete,
     selfBlock
 } from '../store/features/userSlice';
 import { useEffect, useState } from 'react';
@@ -12,7 +12,6 @@ import { FaLock, FaLockOpen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 import {logout} from "../store/features/authSlice";
-
 
 
 const UserList = () => {
@@ -66,7 +65,7 @@ const UserList = () => {
     };
 
     const handleSelfDelete = ()=>{
-        dispatch(deleteUserAsUser(USER.id))
+        dispatch(selfDelete(USER.id))
     }
 
     const handleSelfBlock=()=>{
@@ -137,40 +136,43 @@ const UserList = () => {
             </header>
 
 
-            <div className="grid grid-cols-12 gap-4 mb-4">
+            <div className="grid grid-cols-12 gap-4 p-2 mb-4">
                 {
                     isAdmin && <div className="col-span-1">
-                    <input
+                        <input
                             type="checkbox"
                             checked={checkedAll}
                             onChange={(e) => handleCheckAll(e)}
                         />
                     </div>
                 }
-                <div className="col-span-2 font-semibold">Name</div>
-                <div className="col-span-3 font-semibold">Email</div>
+                <div className="col-span-3 font-semibold">ID</div>
+                <div className="col-span-1 font-semibold">Name</div>
+                <div className="col-span-2 font-semibold">Email</div>
                 <div className="col-span-1 font-semibold">Status</div>
                 <div className="col-span-1 font-semibold">Role</div>
-                <div className="col-span-2 font-semibold">Registration</div>
+                <div className="col-span-1 font-semibold">Registration</div>
                 <div className="col-span-2 font-semibold">Last login</div>
             </div>
-            {users.map(user => (
-                <div key={user.id} className={"grid grid-cols-12 gap-4 mb-2 p-2 border rounded " + (user.id===USER.id && "bg-cyan-100")}>
+            {users?.map(user => (
+                <div key={user.id}
+                     className={"grid grid-cols-12 gap-4 mb-2 p-2 border rounded " + (user.id === USER.id && "bg-cyan-100")}>
                     {
                         isAdmin && <div className="col-span-1">
                             <input
                                 type="checkbox"
                                 disabled={user.id === USER.id}
-                                checked={selectedUsers.includes(user.id)&&user.id !== USER.id}
+                                checked={selectedUsers.includes(user.id) && user.id !== USER.id}
                                 onChange={() => handleSelectUser(user.id)}
                             />
                         </div>
                     }
-                    <div className="col-span-2">{user.name}</div>
-                    <div className="col-span-3">{user.email}</div>
-                    <div className="col-span-1">{user.status}</div>
-                    <div className="col-span-1">{user.role}</div>
-                    <div className="col-span-2">{getDate(user.createdAt)}</div>
+                    <div className="col-span-3 break-words pr-3">{user.myId}</div>
+                    <div className="col-span-1">{user.name}</div>
+                    <div className="col-span-2">{user.email}</div>
+                    <div className="col-span-1 uppercase">{user.status}</div>
+                    <div className="col-span-1 uppercase">{user.role}</div>
+                    <div className="col-span-1">{getDate(user.createdAt)}</div>
                     <div className="col-span-2">{getDateTime(user.lastLogin)}</div>
                 </div>
             ))}

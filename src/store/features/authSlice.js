@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import {toast} from "react-toastify";
+import {baseUrl} from "../../url/baseUrl";
 
-let baseUrl = 'https://itransition-task4-server-nu.vercel.app/api/auth'
 
 const initialState = {
     user: null,
@@ -14,7 +14,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async (credentials, { rejectWithValue }) => {
         try {
-            const response = await axios.post(baseUrl+'/login', credentials);
+            const response = await axios.post(baseUrl+'/api/auth/login', credentials);
             return response.data;
         } catch (error) {
              return rejectWithValue(error);
@@ -26,7 +26,7 @@ export const registration = createAsyncThunk(
     'auth/registration',
     async (data, { rejectWithValue }) => {
         try {
-            const response = await axios.post(baseUrl+'/registration', data);
+            const response = await axios.post(baseUrl+'/api/auth/registration', data);
             return response.data;
         } catch (error) {
             return rejectWithValue(error);
