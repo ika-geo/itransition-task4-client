@@ -146,7 +146,7 @@ const UserList = () => {
                         />
                     </div>
                 }
-                <div className="col-span-3 font-semibold">ID</div>
+                <div className="col-span-2 font-semibold">ID</div>
                 <div className="col-span-1 font-semibold">Name</div>
                 <div className="col-span-2 font-semibold">Email</div>
                 <div className="col-span-1 font-semibold">Status</div>
@@ -167,7 +167,7 @@ const UserList = () => {
                             />
                         </div>
                     }
-                    <div className="col-span-3 break-words pr-3">{user.myId}</div>
+                    <div className="col-span-2 break-words pr-3">{user.id}</div>
                     <div className="col-span-1">{user.name}</div>
                     <div className="col-span-2">{user.email}</div>
                     <div className="col-span-1 uppercase">{user.status}</div>
